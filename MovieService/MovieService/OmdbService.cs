@@ -2,7 +2,7 @@
 
 namespace MovieService
 {
-    class OmdbService : IMovieService
+    public class OmdbService : IMovieService
     {
         private static OmdbService service;
 

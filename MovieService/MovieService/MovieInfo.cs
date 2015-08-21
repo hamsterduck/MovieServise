@@ -2,7 +2,7 @@
 
 namespace MovieService
 {
-    class MovieInfo
+    public class MovieInfo
     {
     }
 }

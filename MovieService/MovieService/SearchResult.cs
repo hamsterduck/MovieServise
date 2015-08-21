@@ -2,7 +2,7 @@
 
 namespace MovieService
 {
-    class SearchResult
+    public class SearchResult
     {
     }
 }
