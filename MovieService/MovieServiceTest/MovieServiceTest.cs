@@ -25,8 +25,7 @@ namespace MovieServiceTest
         {
             OmdbService service = OmdbService.Service;
             title = "thisIsNotAnameOfAmovie";
-            SearchResult expected = new SearchResult();
-            SearchResult actual = service.SearchMovie(title);
+            service.SearchMovie(title);
         }
 
         [TestMethod]
@@ -51,6 +50,15 @@ namespace MovieServiceTest
             expected.Rating = "8.7";
             MovieInfo actual = service.GetMovieInfo(title);
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(TitleNotFoundException))]
+        public void OmdbTMovieInfoNotFoundExceptionTest()
+        {
+            OmdbService service = OmdbService.Service;
+            title = "thisIsNotAnameOfAmovie";
+            service.GetMovieInfo(title);
         }
     }
 }
