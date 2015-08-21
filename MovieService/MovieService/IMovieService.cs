@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MovieService
+﻿namespace MovieService
 {
     interface IMovieService
     {

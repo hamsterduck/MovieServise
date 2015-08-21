@@ -13,7 +13,7 @@ namespace MovieServiceTest
         public void OmdbSearchMovieByTitleTest()
         {
             OmdbService service = OmdbService.Service;
-            title = "Ant man";
+            title = "Fight Club";
             SearchResult expected = new SearchResult();
             expected.Title.Add("Fight Club");
             expected.Year.Add("1999");
