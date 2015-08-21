@@ -20,6 +20,10 @@
         private string awards;
         private string rating;
 
+
+
+        /// <summary>The Title property represents the a the movie's title</summary> 
+        /// <value>The Title property gets/sets the value of the string field title</value>
         public string Title
         {
             get
@@ -39,6 +43,8 @@
             }
         }
 
+        /// <summary>The Year property represents the a the movie's release year</summary> 
+        /// <value>The Year property gets/sets the value of the string field year</value>
         public string Year
         {
             get
@@ -58,6 +64,9 @@
             }
         }
 
+
+        /// <summary>The Rated property represents the a the movie's rate</summary> 
+        /// <value>The Rated property gets/sets the value of the string field rated</value>
         public string Rated
         {
             get
@@ -77,6 +86,9 @@
             }
         }
 
+
+        /// <summary>The Released property represents the a the movie's release date</summary> 
+        /// <value>The Released property gets/sets the value of the string field release</value>
         public string Released
         {
             get
@@ -96,6 +108,9 @@
             }
         }
 
+
+        /// <summary>The RunTime property represents the a the movie's runTime</summary> 
+        /// <value>The RunTime property gets/sets the value of the string field runTime</value>
         public string RunTime
         {
             get
@@ -115,6 +130,9 @@
             }
         }
 
+
+        /// <summary>The Genre property represents the a the movie's genre</summary> 
+        /// <value>The Genre property gets/sets the value of the string field genre</value>
         public string Genre
         {
             get
@@ -134,6 +152,9 @@
             }
         }
 
+
+        /// <summary>The Director property represents the a the movie's director</summary> 
+        /// <value>The Director property gets/sets the value of the string field director</value>
         public string Director
         {
             get
@@ -153,6 +174,9 @@
             }
         }
 
+
+        /// <summary>The Writer property represents the a the movie's writer</summary> 
+        /// <value>The Writer property gets/sets the value of the string field writer</value>
         public string Writer
         {
             get
@@ -172,6 +196,9 @@
             }
         }
 
+
+        /// <summary>The Actors property represents the a the movie's actors</summary> 
+        /// <value>The Actors property gets/sets the value of the string field actors</value>
         public string Actors
         {
             get
@@ -191,6 +218,9 @@
             }
         }
 
+
+        /// <summary>The Plot property represents the a the movie's plot</summary> 
+        /// <value>The Plot property gets/sets the value of the string field plot</value>
         public string Plot
         {
             get
@@ -210,6 +240,9 @@
             }
         }
 
+
+        /// <summary>The Language property represents the a the movie's language</summary> 
+        /// <value>The Language property gets/sets the value of the string field language</value>
         public string Language
         {
             get
@@ -229,6 +262,9 @@
             }
         }
 
+
+        /// <summary>The Country property represents the a the movie's country</summary> 
+        /// <value>The Country property gets/sets the value of the string field country</value>
         public string Country
         {
             get
@@ -248,6 +284,9 @@
             }
         }
 
+
+        /// <summary>The Awards property represents the a the movie's awards</summary> 
+        /// <value>The Awards property gets/sets the value of the string field awards</value>
         public string Awards
         {
             get
@@ -267,6 +306,9 @@
             }
         }
 
+
+        /// <summary>The Rating property represents the a the movie's rating</summary> 
+        /// <value>The Rating property gets/sets the value of the string field rating</value>
         public string Rating
         {
             get

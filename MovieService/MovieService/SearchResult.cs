@@ -11,12 +11,17 @@ namespace MovieService
         private List<string> titles;
         private List<string> years;
 
+        /// <summary>
+        /// SearchResult Constructor that takes no parameters
+        /// </summary>
         public SearchResult()
         {
             titles = new List<string>();
             years = new List<string>();
         }
 
+        /// <summary>The Titles property represents the a list of movie titles</summary> 
+        /// <value>The Titles property gets/sets the value of the list field titles</value>
         public List<string> Titles
         {
             get
@@ -37,6 +42,8 @@ namespace MovieService
         }
 
 
+        /// <summary>The Titles property represents the a list of movie release year</summary> 
+        /// <value>The Years property gets/sets the value of the list field years</value>
         public List<string> Years
         {
             get
