@@ -1,5 +1,8 @@
 ﻿namespace MovieService
 {
+    /// <summary>
+    /// A class that represents a movie and it's fields contain information about the movie
+    /// </summary>
     public class MovieInfo
     {
         private string title;

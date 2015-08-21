@@ -2,6 +2,9 @@
 
 namespace MovieService
 {
+    /// <summary>
+    /// A class to test run the service
+    /// </summary>
     class Program
     {
         static void Main()

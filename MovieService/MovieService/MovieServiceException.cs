@@ -2,6 +2,9 @@
 
 namespace MovieService
 {
+    /// <summary>
+    /// A class that holds all Exceptiotions related to the MovieService
+    /// </summary>
     public class WrongServiceNameException : ApplicationException
     {
         public WrongServiceNameException(string msg)

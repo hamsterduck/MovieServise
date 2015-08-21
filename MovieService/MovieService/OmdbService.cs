@@ -2,6 +2,11 @@
 using System.Linq;
 using System.Xml.Linq;
 
+/// <summary>
+/// A class that implements the IMoveService Interface using the Omdb RESTful API 
+/// </summary>
+/// <seealso cref="MovieService.IMovieService"/>
+
 namespace MovieService
 {
     public class OmdbService : IMovieService
@@ -9,6 +14,9 @@ namespace MovieService
         private static OmdbService service;
         public const string baseUrl = "http://www.omdbapi.com/?r=xml&type=movie&";
 
+        /// <summary>
+        /// OmdbServise Constructor that takes no parameters
+        /// </summary>
         private OmdbService(){ }
 
         public static OmdbService Service
@@ -23,13 +31,30 @@ namespace MovieService
             }
         }
 
+        /// <summary>
+        /// Compsosites a query, loads and parses the response
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns>Object of type SearchResult containing names and release years of resemling movie titles</returns>
+        /// <exception cref="MovieService.FailedToLoadMovieDBException">Throws exception when the query result file 
+        /// fails to load</exception>
+        /// <exception cref="MovieService.TitleNotFoundException">Throws exception when Omdb returns a false reponse 
+        /// (the movie title does not exist in the database)</exception>
         public SearchResult SearchMovie(string title)
         {
             string url = baseUrl + "s=" + title;
+            XDocument xDoc = null;
             SearchResult result = new SearchResult();
-            XDocument xDoc = XDocument.Load(url);
+            try
+            {
+                xDoc = XDocument.Load(url);
+            }
+            catch (Exception)
+            {
+                throw new FailedToLoadMovieDBException("Error loading file. Please make sure you are connected to the intenet");
+            }
             string response = xDoc.Descendants("root").Attributes("response").First().Value;
-            if (response == "True")
+            if (xDoc != null && response == "True")
             {
                 {
                     var moviesQuery = from root in xDoc.Root.Descendants("Movie")
@@ -54,6 +79,15 @@ namespace MovieService
             return result;
         }
 
+        /// <summary>
+        /// Compsosites a query, loads and parses the response
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns>Obhect of type MovieInfo containing information about a particular movie</returns>
+        /// <exception cref="MovieService.FailedToLoadMovieDBException">Throws exception when the query result file 
+        /// fails to load</exception>
+        /// <exception cref="MovieService.TitleNotFoundException">Throws exception when Omdb returns a false reponse 
+        /// (the movie title does not exist in the database)</exception>
         public MovieInfo GetMovieInfo(string title)
         {
             string url = baseUrl + "t=" + title;
@@ -115,6 +149,9 @@ namespace MovieService
             return result;
         }
 
+        /// <summary>
+        /// Prints the result of the query
+        /// </summary>
         public void PrintResult(object result)
         {
             if (result.GetType() == typeof(SearchResult))

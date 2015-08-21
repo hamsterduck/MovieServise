@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace MovieService
 {
+    /// <summary>
+    /// A class that represnets a list of movies by their titles and release years
+    /// </summary>
     public class SearchResult
     {
         private List<string> titles;
