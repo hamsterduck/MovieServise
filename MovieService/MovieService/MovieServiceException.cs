@@ -10,4 +10,22 @@ namespace MovieService
 
         }
     }
+
+    public class TitleNotFoundException : ApplicationException
+    {
+        public TitleNotFoundException(string msg)
+            : base(msg)
+        {
+
+        }
+    }
+
+    public class FailedToLoadMovieDBException : ApplicationException
+    {
+        public FailedToLoadMovieDBException(string msg)
+            : base(msg)
+        {
+
+        }
+    }
 }

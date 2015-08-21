@@ -14,7 +14,7 @@ namespace MovieService
             years = new List<string>();
         }
 
-        public List<string> Title
+        public List<string> Titles
         {
             get
             {
@@ -34,7 +34,7 @@ namespace MovieService
         }
 
 
-        public List<string> Year
+        public List<string> Years
         {
             get
             {
@@ -56,7 +56,7 @@ namespace MovieService
         public override string ToString()
         {
             string output = null;
-            var movies = Title.Zip(Year, (title, year) => title + " (" + year + ")");
+            var movies = Titles.Zip(Years, (title, year) => title + " (" + year + ")");
             foreach (var movie in movies)
             {
                 output += movie + "\n";

@@ -15,10 +15,18 @@ namespace MovieServiceTest
             OmdbService service = OmdbService.Service;
             title = "Fight Club";
             SearchResult expected = new SearchResult();
-            expected.Title.Add("Fight Club");
-            expected.Year.Add("1999");
             SearchResult actual = service.SearchMovie(title);
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual.Titles.Contains("Fight Club") && actual.Years.Contains("1999"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(TitleNotFoundException))]
+        public void OmdbTitleNotFoundExceptionTest()
+        {
+            OmdbService service = OmdbService.Service;
+            title = "thisIsNotAnameOfAmovie";
+            SearchResult expected = new SearchResult();
+            SearchResult actual = service.SearchMovie(title);
         }
 
         [TestMethod]

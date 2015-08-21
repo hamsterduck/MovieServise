@@ -290,5 +290,25 @@
                 + "Plot: " + Plot + "\n" + "Language: " + Language + "\n" + "Country: " + Country + "\n"
                 + "Awards: " + Awards + "\n" + "IMDB Rating: " + Rating + "\n\n";
         }
+
+        public override bool Equals(object obj)
+        {
+            MovieInfo movieInfo = obj as MovieInfo;
+            if(movieInfo == null)
+            {
+                return false;
+            }
+            else
+            {
+                return title.Equals(movieInfo.Title) && year.Equals(movieInfo.Year) &&
+                        rated.Equals(movieInfo.Rated) && released.Equals(movieInfo.Released) &&
+                        runTime.Equals(movieInfo.RunTime) && genre.Equals(movieInfo.Genre) &&
+                        director.Equals(movieInfo.Director) && writer.Equals(movieInfo.Writer) &&
+                        actors.Equals(movieInfo.Actors) && plot.Equals(movieInfo.Plot) &&
+                        language.Equals(movieInfo.Language) && country.Equals(movieInfo.Country) &&
+                        awards.Equals(movieInfo.Awards) && rating.Equals(movieInfo.Rating);
+            }
+        }
+        
     }
 }
