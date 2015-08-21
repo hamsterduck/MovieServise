@@ -13,7 +13,9 @@ namespace MovieService
                 return OmdbService.Service;
             }
             else {
-               //throw eception
+                {
+                    throw new WrongServiceNameException("Sorry, we currently have no service named " + service);
+                }
             }
         }
     }
