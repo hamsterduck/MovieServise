@@ -284,7 +284,7 @@
         }
         public override string ToString()
         {
-            return "\nTitle: " + Title + "\n" + "Year: " + Year + "\n" + "Rated: " + Rated + "\n" + "Released: " + Released + "\n"
+            return "##### Movie Info #####\n" + "\nTitle: " + Title + "\n" + "Year: " + Year + "\n" + "Rated: " + Rated + "\n" + "Released: " + Released + "\n"
                 + "RunTime: " + RunTime + "\n" + "Genre: " + Genre + "\n" + "Director: " + Director + "\n"
                 + "Writer: " + Writer + "\n" + "Actors: " + Actors + "\n"
                 + "Plot: " + Plot + "\n" + "Language: " + Language + "\n" + "Country: " + Country + "\n"

@@ -61,7 +61,7 @@ namespace MovieService
             {
                 output += movie + "\n";
             }
-            return "\n" + output + "\n";
+            return "#### Movie Serach Results #####\n\n" + output + "\n";
         }
     }
 }
