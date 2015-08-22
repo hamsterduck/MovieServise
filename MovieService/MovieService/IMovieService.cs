@@ -4,6 +4,7 @@
     /// Interface that MovieService classes are required to implement 
     /// </summary>
     /// <seealso cref="MovieService.OmdbService"/>
+    ///  /// <seealso cref="MovieService.TmdbService"/>
     interface IMovieService
     {
         /// <summary>

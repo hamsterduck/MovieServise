@@ -9,9 +9,14 @@ namespace MovieService
     {
         static void Main()
         {
+            // Flow for using OMDb service 
             IMovieService movieService = MovieServiceFactory.GetMovieService(MovieServiceFactory.OMDB);
             Console.WriteLine(movieService.SearchMovie("Fight Club"));
             Console.WriteLine(movieService.GetMovieInfo("Fight Club"));
+
+            // Flow for using TMDb service
+            movieService = MovieServiceFactory.GetMovieService(MovieServiceFactory.TMDB);
+            Console.WriteLine(movieService.SearchMovie("The Matrix"));
             Console.ReadLine();
         }
     }

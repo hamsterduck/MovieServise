@@ -2,23 +2,21 @@
 using System.Linq;
 using System.Xml.Linq;
 
-/// <summary>
-/// A class that implements the IMoveService Interface using the Omdb RESTful API 
-/// </summary>
-/// <seealso cref="MovieService.IMovieService"/>
-
 namespace MovieService
 {
+    /// <summary>
+    /// A class that implements the IMoveService Interface using the OMDb RESTful API 
+    /// </summary>
+    /// <seealso cref="MovieService.IMovieService"/>
     public class OmdbService : IMovieService
     {
         private static OmdbService service;
-        public const string baseUrl = "http://www.omdbapi.com/?r=xml&type=movie&";
+        private const string baseUrl = "http://www.omdbapi.com/?r=xml&type=movie&";
 
-        /// <summary>
-        /// OmdbServise Constructor that takes no parameters
-        /// </summary>
         private OmdbService(){ }
 
+        /// <summary>The Service property represents the one and only(singleton) instance of OmdbServoce</summary> 
+        /// <value>The Service property gets the service or creates one if needed</value>
         public static OmdbService Service
         {
             get
@@ -35,7 +33,7 @@ namespace MovieService
         /// Compsosites a query, loads and parses the response
         /// </summary>
         /// <param name="title"></param>
-        /// <returns>Object of type SearchResult containing names and release years of resemling movie titles</returns>
+        /// <returns>Object of type SearchResult containing names and release years of resembling movie titles</returns>
         /// <exception cref="MovieService.FailedToLoadMovieDBException">Throws exception when the query result file 
         /// fails to load</exception>
         /// <exception cref="MovieService.TitleNotFoundException">Throws exception when Omdb returns a false reponse 

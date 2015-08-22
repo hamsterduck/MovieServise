@@ -22,7 +22,7 @@
 
 
 
-        /// <summary>The Title property represents the a the movie's title</summary> 
+        /// <summary>The Title property represents the movie's title</summary> 
         /// <value>The Title property gets/sets the value of the string field title</value>
         public string Title
         {
@@ -43,7 +43,7 @@
             }
         }
 
-        /// <summary>The Year property represents the a the movie's release year</summary> 
+        /// <summary>The Year property represents the movie's release year</summary> 
         /// <value>The Year property gets/sets the value of the string field year</value>
         public string Year
         {
@@ -65,7 +65,7 @@
         }
 
 
-        /// <summary>The Rated property represents the a the movie's rate</summary> 
+        /// <summary>The Rated property represents the movie's rate</summary> 
         /// <value>The Rated property gets/sets the value of the string field rated</value>
         public string Rated
         {
@@ -87,7 +87,7 @@
         }
 
 
-        /// <summary>The Released property represents the a the movie's release date</summary> 
+        /// <summary>The Released property represents the movie's release date</summary> 
         /// <value>The Released property gets/sets the value of the string field release</value>
         public string Released
         {
@@ -109,7 +109,7 @@
         }
 
 
-        /// <summary>The RunTime property represents the a the movie's runTime</summary> 
+        /// <summary>The RunTime property represents the movie's runTime</summary> 
         /// <value>The RunTime property gets/sets the value of the string field runTime</value>
         public string RunTime
         {
@@ -131,7 +131,7 @@
         }
 
 
-        /// <summary>The Genre property represents the a the movie's genre</summary> 
+        /// <summary>The Genre property represents the movie's genre</summary> 
         /// <value>The Genre property gets/sets the value of the string field genre</value>
         public string Genre
         {
@@ -153,7 +153,7 @@
         }
 
 
-        /// <summary>The Director property represents the a the movie's director</summary> 
+        /// <summary>The Director property represents the movie's director</summary> 
         /// <value>The Director property gets/sets the value of the string field director</value>
         public string Director
         {
@@ -175,7 +175,7 @@
         }
 
 
-        /// <summary>The Writer property represents the a the movie's writer</summary> 
+        /// <summary>The Writer property represents the movie's writer</summary> 
         /// <value>The Writer property gets/sets the value of the string field writer</value>
         public string Writer
         {
@@ -197,7 +197,7 @@
         }
 
 
-        /// <summary>The Actors property represents the a the movie's actors</summary> 
+        /// <summary>The Actors property represents the movie's actors</summary> 
         /// <value>The Actors property gets/sets the value of the string field actors</value>
         public string Actors
         {
@@ -219,7 +219,7 @@
         }
 
 
-        /// <summary>The Plot property represents the a the movie's plot</summary> 
+        /// <summary>The Plot property represents the movie's plot</summary> 
         /// <value>The Plot property gets/sets the value of the string field plot</value>
         public string Plot
         {
@@ -241,7 +241,7 @@
         }
 
 
-        /// <summary>The Language property represents the a the movie's language</summary> 
+        /// <summary>The Language property represents the movie's language</summary> 
         /// <value>The Language property gets/sets the value of the string field language</value>
         public string Language
         {
@@ -263,7 +263,7 @@
         }
 
 
-        /// <summary>The Country property represents the a the movie's country</summary> 
+        /// <summary>The Country property represents the movie's country</summary> 
         /// <value>The Country property gets/sets the value of the string field country</value>
         public string Country
         {
@@ -285,7 +285,7 @@
         }
 
 
-        /// <summary>The Awards property represents the a the movie's awards</summary> 
+        /// <summary>The Awards property represents the movie's awards</summary> 
         /// <value>The Awards property gets/sets the value of the string field awards</value>
         public string Awards
         {
@@ -307,7 +307,7 @@
         }
 
 
-        /// <summary>The Rating property represents the a the movie's rating</summary> 
+        /// <summary>The Rating property represents the movie's rating</summary> 
         /// <value>The Rating property gets/sets the value of the string field rating</value>
         public string Rating
         {
@@ -327,6 +327,10 @@
                 }
             }
         }
+        /// <summary>
+        /// Overriding ToString to print a MovieInfo Object
+        /// </summary>
+        /// <returns>A string representing A MovieInfo Object</returns>
         public override string ToString()
         {
             return "##### Movie Info #####\n" + "\nTitle: " + Title + "\n" + "Year: " + Year + "\n" + "Rated: " + Rated + "\n" + "Released: " + Released + "\n"
@@ -336,6 +340,11 @@
                 + "Awards: " + Awards + "\n" + "IMDB Rating: " + Rating + "\n\n";
         }
 
+        /// <summary>
+        /// Overriding Equals to be able to compare between two object. Mainly for testing purposes
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>True if Object are equal or False, otherwise</returns>
         public override bool Equals(object obj)
         {
             MovieInfo movieInfo = obj as MovieInfo;

@@ -3,7 +3,7 @@
 namespace MovieService
 {
     /// <summary>
-    /// A class that holds all Exceptiotions related to the MovieService
+    /// Thrown when trying to create an instance of an unknown service
     /// </summary>
     public class WrongServiceNameException : ApplicationException
     {
@@ -14,6 +14,9 @@ namespace MovieService
         }
     }
 
+    /// <summary>
+    /// Thrown when no data is found for the title that was passed
+    /// </summary>
     public class TitleNotFoundException : ApplicationException
     {
         public TitleNotFoundException(string msg)
@@ -23,6 +26,9 @@ namespace MovieService
         }
     }
 
+    /// <summary>
+    /// Thrown when the data file fails to load
+    /// </summary>
     public class FailedToLoadMovieDBException : ApplicationException
     {
         public FailedToLoadMovieDBException(string msg)
@@ -30,5 +36,13 @@ namespace MovieService
         {
 
         }
+    }
+
+    /// <summary>
+    /// Thrown when authentication fails
+    /// </summary>
+    public class AuthenticationFailedException : ApplicationException
+    {
+
     }
 }

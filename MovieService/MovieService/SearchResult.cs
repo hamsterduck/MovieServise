@@ -63,6 +63,10 @@ namespace MovieService
             }
         }
 
+        /// <summary>
+        /// Overriding ToString to print a SearchResult Object
+        /// </summary>
+        /// <returns>A string representing A SearchResult Object</returns>
         public override string ToString()
         {
             string output = null;
