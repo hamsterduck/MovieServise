@@ -11,14 +11,14 @@ namespace MovieService
     public class TmdbService : IMovieService
     {
         private static TmdbService service;
-
-        private TmdbService() { }
         private const string BaseUrl = "http://api.themoviedb.org/3/";
         private const string Authentication = "authentication/token/";
         private const string newToken = "new?api_key=";
         private const string ApiKey = "d22f2c0044f4c4eb0a46c5539bf4fc89";
         private string token;
-        private string sessionID;
+        private string sessionID;`
+
+        private TmdbService() { }
 
         /// <summary>The Token property represents the request token we use for TMDb authentication</summary> 
         /// <value>The Token property gets/sets the value of the string field Token</value>
