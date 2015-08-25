@@ -42,7 +42,11 @@ namespace MovieService
     /// Thrown when authentication fails
     /// </summary>
     public class AuthenticationFailedException : ApplicationException
-    {
+    { 
+        public AuthenticationFailedException(string msg) :
+            base(msg)
+        {
 
+        }
     }
 }

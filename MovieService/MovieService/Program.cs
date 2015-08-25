@@ -15,8 +15,9 @@ namespace MovieService
             Console.WriteLine(movieService.GetMovieInfo("Fight Club"));
 
             // Flow for using TMDb service
-            movieService = MovieServiceFactory.GetMovieService(MovieServiceFactory.TMDB);
-            Console.WriteLine(movieService.SearchMovie("The Matrix"));
+            IMovieService movieService2 = MovieServiceFactory.GetMovieService(MovieServiceFactory.TMDB);
+            Console.WriteLine(movieService2.SearchMovie("batman begins"));
+            Console.WriteLine(movieService2.GetMovieInfo("batman begins"));
             Console.ReadLine();
         }
     }

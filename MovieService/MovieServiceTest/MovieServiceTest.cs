@@ -63,7 +63,7 @@ namespace MovieServiceTest
         [TestMethod]
         public void TmdbSearchMovieByTitleTest()
         {
-            OmdbService service = OmdbService.Service;
+            TmdbService service = TmdbService.Service;
             title = "The Matrix";
             SearchResult expected = new SearchResult();
             SearchResult actual = service.SearchMovie(title);
@@ -83,22 +83,14 @@ namespace MovieServiceTest
         public void TmdbGetMovieInfoTest()
         {
             TmdbService service = TmdbService.Service;
-            title = "The Matrix";
+            title = "Batman Begins";
             MovieInfo expected = new MovieInfo();
-            expected.Title = "The Matrix";
-            expected.Year = "1999";
-            expected.Rated = "R";
-            expected.Released = "31 Mar 1999";
-            expected.RunTime = "136 min";
-            expected.Genre = "Action, Sci-Fi";
-            expected.Director = "Andy Wachowski, Lana Wachowski";
-            expected.Writer = "Andy Wachowski, Lana Wachowski";
-            expected.Actors = "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving";
-            expected.Plot = "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.";
-            expected.Language = "English";
-            expected.Country = "USA, Australia";
-            expected.Awards = "Won 4 Oscars. Another 33 wins & 40 nominations.";
-            expected.Rating = "8.7";
+            expected.Title = "Batman Begins";
+            expected.Released = "2005-06-15";
+            expected.RunTime = "140";
+            expected.Genre = " Action, Crime, Drama";
+            expected.Plot = "Driven by tragedy, billionaire Bruce Wayne dedicates his life to uncovering and defeating the corruption that plagues his home, Gotham City.  Unable to work within the system, he instead creates a new identity, a symbol of fear for the criminal underworld - The Batman.";
+            expected.Language = "en";
             MovieInfo actual = service.GetMovieInfo(title);
             Assert.AreEqual(expected, actual);
         }

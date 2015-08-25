@@ -10,6 +10,7 @@ namespace MovieService
     {
         private List<string> titles;
         private List<string> years;
+        private List<string> id;
 
         /// <summary>
         /// SearchResult Constructor that takes no parameters
@@ -18,6 +19,7 @@ namespace MovieService
         {
             titles = new List<string>();
             years = new List<string>();
+            id = new List<string>();
         }
 
         /// <summary>The Titles property represents the a list of movie titles</summary> 
@@ -59,6 +61,27 @@ namespace MovieService
                 else
                 {
                     years.Add("Missing data");
+                }
+            }
+        }
+
+        /// <summary>The Id property represents the a list of movie id's</summary> 
+        /// <value>The Titles property gets/sets the value of the list field titles</value>
+        public List<string> Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    id = value;
+                }
+                else
+                {
+                    id.Add("Missing data");
                 }
             }
         }
