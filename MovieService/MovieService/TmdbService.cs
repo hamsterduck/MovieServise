@@ -167,48 +167,49 @@ namespace MovieService
         /// </summary>
         /// <param name="title"></param>
         /// <returns>Object of type MovieInfo containing information from selected movie</returns>
-        /// <exception cref="MovieService.FailedToLoadMovieDBException">Throws exception when the query fails</exception>
+        /// <exception cref="MovieService.TitleNotFoundException">Throws exception when the query fails</exception>
         public MovieInfo GetMovieInfo(string title)
         {
             SearchResult result = SearchMovie(title);
             MovieInfo movieInfo = new MovieInfo();
-            if (result.Id.Count > 1)
-            {
-                throw new TitleNotFoundException("There are too many result - try to make a more concrete search");
-            }
-            else if (result.Id.Count == 1)
-            {
-                string url = BaseUrl + "movie/" + result.Id[0] + "?api_key=" + ApiKey;
-                using (WebClient wc = new WebClient())
-                {
-                    JObject info = new JObject();
-                    try
-                    {
-                        var json = wc.DownloadString(url);
-                        info = JObject.Parse(json);
-                    }
-                    catch
-                    {
-                        throw new FailedToLoadMovieDBException("Error loading file. Please make sure you are connected to the intenet");
-                    }
-                    JArray jArray = new JArray();
-                    jArray = (JArray)info["genres"];
-                    movieInfo.Genre = " ";
-                    foreach (var token in jArray)
-                    {
-                        movieInfo.Genre += (string)token["name"];
-                        movieInfo.Genre += ", ";
-                    }
-                    movieInfo.Language = (string)info["original_language"];
-                    movieInfo.Plot = (string)info["overview"];
-                    movieInfo.Released = (string)info["release_date"]; 
-                    movieInfo.RunTime = (string)info["runtime"]; 
-                    movieInfo.Title = (string)info["original_title"];
-                }
-            }
-            else
+            if (result.Id.Count < 1)
             {
                 throw new TitleNotFoundException("Title not found");
+            }
+            string url = BaseUrl + "movie/" + result.Id[0] + "?api_key=" + ApiKey;
+            using (WebClient wc = new WebClient())
+            {
+                JObject info = new JObject();
+                try
+                {
+                    var json = wc.DownloadString(url);
+                    info = JObject.Parse(json);
+                }
+                catch
+                {
+                    throw new FailedToLoadMovieDBException("Error loading file. Please make sure you are connected to the intenet");
+                }
+                JArray jArray = new JArray();
+                jArray = (JArray)info["genres"];
+                movieInfo.Genre = " ";
+                foreach (var token in jArray)
+                {
+                    movieInfo.Genre += (string)token["name"];
+                    movieInfo.Genre += ", ";
+                }
+                movieInfo.Language = (string)info["original_language"];
+                movieInfo.Plot = (string)info["overview"];
+                movieInfo.Released = (string)info["release_date"]; 
+                movieInfo.RunTime = (string)info["runtime"]; 
+                movieInfo.Title = (string)info["original_title"];
+                movieInfo.Year = null;
+                movieInfo.Rated = null;
+                movieInfo.Director = null;
+                movieInfo.Writer = null;
+                movieInfo.Actors = null;
+                movieInfo.Country = null;
+                movieInfo.Awards = null;
+                movieInfo.Rating = null;
             }
             return movieInfo;
         }

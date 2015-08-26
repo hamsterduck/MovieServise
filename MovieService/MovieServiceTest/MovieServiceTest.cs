@@ -67,7 +67,7 @@ namespace MovieServiceTest
             title = "The Matrix";
             SearchResult expected = new SearchResult();
             SearchResult actual = service.SearchMovie(title);
-            Assert.IsTrue(actual.Titles.Contains("The Matrix") && actual.Years.Contains("1999"));
+            Assert.IsTrue(actual.Titles.Contains("The Matrix") && actual.Years.Contains("1999-03-30"));
         }
 
         [TestMethod]
@@ -91,6 +91,14 @@ namespace MovieServiceTest
             expected.Genre = " Action, Crime, Drama";
             expected.Plot = "Driven by tragedy, billionaire Bruce Wayne dedicates his life to uncovering and defeating the corruption that plagues his home, Gotham City.  Unable to work within the system, he instead creates a new identity, a symbol of fear for the criminal underworld - The Batman.";
             expected.Language = "en";
+            expected.Year = "Missing data";
+            expected.Rated = "Missing data";
+            expected.Director = "Missing data";
+            expected.Writer = "Missing data";
+            expected.Actors = "Missing data";
+            expected.Country = "Missing data";
+            expected.Awards = "Missing data";
+            expected.Rating = "Missing data";
             MovieInfo actual = service.GetMovieInfo(title);
             Assert.AreEqual(expected, actual);
         }
