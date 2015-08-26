@@ -40,32 +40,32 @@ namespace MovieService
         /// (the movie title does not exist in the database)</exception>
         public SearchResult SearchMovie(string title)
         {
-            string url = baseUrl + "s=" + title;
-            XDocument xDoc = null;
-            SearchResult result = new SearchResult();
+            string Url = baseUrl + "s=" + title;
+            XDocument XDoc = null;
+            SearchResult Result = new SearchResult();
             try
             {
-                xDoc = XDocument.Load(url);
+                XDoc = XDocument.Load(Url);
             }
             catch (Exception)
             {
                 throw new FailedToLoadMovieDBException("Error loading file. Please make sure you are connected to the intenet");
             }
-            string response = xDoc.Descendants("root").Attributes("response").First().Value;
-            if (xDoc != null && response == "True")
+            string response = XDoc.Descendants("root").Attributes("response").First().Value;
+            if (XDoc != null && response == "True")
             {
                 {
-                    var moviesQuery = from root in xDoc.Root.Descendants("Movie")
+                    var MoviesQuery = from Root in XDoc.Root.Descendants("Movie")
                                       select new
                                       {
-                                          Title = root.Attribute("Title").Value,
-                                          Year = root.Attribute("Year").Value
+                                          Title = Root.Attribute("Title").Value,
+                                          Year = Root.Attribute("Year").Value
                                       };
-                    var movies = moviesQuery.ToList();
-                    foreach (var movie in movies)
+                    var Movies = MoviesQuery.ToList();
+                    foreach (var Movie in Movies)
                     {
-                        result.Titles.Add(movie.Title);
-                        result.Years.Add(movie.Year);
+                        Result.Titles.Add(Movie.Title);
+                        Result.Years.Add(Movie.Year);
                     }
                 }
 
@@ -74,7 +74,7 @@ namespace MovieService
             {
                 throw new TitleNotFoundException("Sorry, never heard of the movie " + title);
             }
-            return result;
+            return Result;
         }
 
         /// <summary>
@@ -88,63 +88,63 @@ namespace MovieService
         /// (the movie title does not exist in the database)</exception>
         public MovieInfo GetMovieInfo(string title)
         {
-            string url = baseUrl + "t=" + title;
-            XDocument xDoc = null;
-            MovieInfo result = new MovieInfo();
+            string Url = baseUrl + "t=" + title;
+            XDocument XDoc = null;
+            MovieInfo Result = new MovieInfo();
             
             try
             {
-                xDoc = XDocument.Load(url);
+                XDoc = XDocument.Load(Url);
             } 
             catch(Exception)
             {
                 throw new FailedToLoadMovieDBException("Error loading file. Please make sure you are connected to the intenet");
             }
-            string response = xDoc.Descendants("root").Attributes("response").First().Value;
-            if (xDoc != null && response == "True")
+            string response = XDoc.Descendants("root").Attributes("response").First().Value;
+            if (XDoc != null && response == "True")
             {
-                var moviesQuery = from root in xDoc.Root.Descendants("movie")
+                var MoviesQuery = from Root in XDoc.Root.Descendants("movie")
                                   select new
                                   {
-                                      Title = root.Attribute("title").Value,
-                                      Year = root.Attribute("year").Value,
-                                      Rated = root.Attribute("rated").Value,
-                                      Released = root.Attribute("released").Value,
-                                      Runtime = root.Attribute("runtime").Value,
-                                      Genre = root.Attribute("genre").Value,
-                                      Director = root.Attribute("director").Value,
-                                      Writer = root.Attribute("writer").Value,
-                                      Actors = root.Attribute("actors").Value,
-                                      Plot = root.Attribute("plot").Value,
-                                      Language = root.Attribute("language").Value,
-                                      Country = root.Attribute("country").Value,
-                                      Awards = root.Attribute("awards").Value,
-                                      Rating = root.Attribute("imdbRating").Value
+                                      Title = Root.Attribute("title").Value,
+                                      Year = Root.Attribute("year").Value,
+                                      Rated = Root.Attribute("rated").Value,
+                                      Released = Root.Attribute("released").Value,
+                                      Runtime = Root.Attribute("runtime").Value,
+                                      Genre = Root.Attribute("genre").Value,
+                                      Director = Root.Attribute("director").Value,
+                                      Writer = Root.Attribute("writer").Value,
+                                      Actors = Root.Attribute("actors").Value,
+                                      Plot = Root.Attribute("plot").Value,
+                                      Language = Root.Attribute("language").Value,
+                                      Country = Root.Attribute("country").Value,
+                                      Awards = Root.Attribute("awards").Value,
+                                      Rating = Root.Attribute("imdbRating").Value
                                   };
-                var movies = moviesQuery.ToList();
-                foreach (var movie in movies)
+                var Movies = MoviesQuery.ToList();
+                foreach (var Movie in Movies)
                 {
-                    result.Title = movie.Title;
-                    result.Year = movie.Year;
-                    result.Rated = movie.Rated;
-                    result.Released = movie.Released;
-                    result.RunTime = movie.Runtime;
-                    result.Genre = movie.Genre;
-                    result.Director = movie.Director;
-                    result.Writer = movie.Writer;
-                    result.Actors = movie.Actors;
-                    result.Plot = movie.Plot;
-                    result.Language = movie.Language;
-                    result.Country = movie.Country;
-                    result.Awards = movie.Awards;
-                    result.Rating = movie.Rating;
+                    Result.Title = Movie.Title;
+                    Result.Year = Movie.Year;
+                    Result.Rated = Movie.Rated;
+                    Result.Released = Movie.Released;
+                    Result.RunTime = Movie.Runtime;
+                    Result.Genre = Movie.Genre;
+                    Result.Director = Movie.Director;
+                    Result.Writer = Movie.Writer;
+                    Result.Actors = Movie.Actors;
+                    Result.Plot = Movie.Plot;
+                    Result.Language = Movie.Language;
+                    Result.Country = Movie.Country;
+                    Result.Awards = Movie.Awards;
+                    Result.Rating = Movie.Rating;
                 }
             }
             else
             {
                 throw new TitleNotFoundException("Sorry, never heard of the movie " + title);
             }
-            return result;
+            return Result;
         }
 
         /// <summary>

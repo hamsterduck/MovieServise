@@ -14,10 +14,10 @@ namespace MovieService
     public class TmdbService : IMovieService
     {
         private static TmdbService service;
-        private const string BaseUrl = "http://api.themoviedb.org/3/";
-        private const string Authentication = "authentication/token/";
+        private const string baseUrl = "http://api.themoviedb.org/3/";
+        private const string authentication = "authentication/token/";
         private const string newToken = "new?api_key=";
-        private const string ApiKey = "d22f2c0044f4c4eb0a46c5539bf4fc89";
+        private const string apiKey = "d22f2c0044f4c4eb0a46c5539bf4fc89";
         private string token;
         private string sessionID;
 
@@ -62,34 +62,34 @@ namespace MovieService
         /// <exception cref="MovieService.AuthenticationFailedException">Throws exception when the authentication fails</exception>
         public string Authenticate(string userName, string password)
         {
-            string url = BaseUrl + Authentication + newToken + ApiKey;
+            string Url = baseUrl + authentication + newToken + apiKey;
             using (WebClient wc = new WebClient())
             {
-                string json = null;
-                JObject auth = null;
+                string Json = null;
+                JObject Auth = null;
                 try
                 {
-                    json = wc.DownloadString(url);
+                    Json = wc.DownloadString(Url);
                 }
                 catch
                 {
                     throw new AuthenticationFailedException("Error loading file. Please make sure you are connected to the intenet");
                 }
-                auth = JObject.Parse(json);
-                token = (string)auth["request_token"];
-                url = BaseUrl + Authentication + "validate_with_login?api_key=" + ApiKey + 
+                Auth = JObject.Parse(Json);
+                token = (string)Auth["request_token"];
+                Url = baseUrl + authentication + "validate_with_login?api_key=" + apiKey + 
                     "&request_token=" + token + "&username=" + userName + "&password=" + password;
                 try
                 {
-                    json = wc.DownloadString(url);
+                    Json = wc.DownloadString(Url);
                 }
-                catch(Exception e)
+                catch(Exception UrlException)
                 {
-                    if (e.Message == "The remote server returned an error: (401) Unauthorized.")
+                    if (UrlException.Message == "The remote server returned an error: (401) Unauthorized.")
                     {
                         throw new AuthenticationFailedException("Wrong user name or password");
                     }
-                    else if (e.Message == "The remote server returned an error: (400) Bad Request.")
+                    else if (UrlException.Message == "The remote server returned an error: (400) Bad Request.")
                     {
                         throw new AuthenticationFailedException("No user name or password was enterd");
                     }
@@ -99,19 +99,19 @@ namespace MovieService
                     }
                 }
 
-                auth = JObject.Parse(json);
-                token = (string)auth["request_token"];
-                url = BaseUrl + "authentication/session/new?api_key=" + ApiKey + "&request_token=" + token;
+                Auth = JObject.Parse(Json);
+                token = (string)Auth["request_token"];
+                Url = baseUrl + "authentication/session/new?api_key=" + apiKey + "&request_token=" + token;
                 try
                 {
-                    json = wc.DownloadString(url);
+                    Json = wc.DownloadString(Url);
                 }
                 catch
                 {
                     throw new AuthenticationFailedException("Error loading file. Please make sure you are connected to the intenet");
                 }
-                auth = JObject.Parse(json);
-                sessionID = (string)auth["session_id"];
+                Auth = JObject.Parse(Json);
+                sessionID = (string)Auth["session_id"];
             }
             if (sessionID != null)
             {
@@ -131,29 +131,29 @@ namespace MovieService
         /// <exception cref="MovieService.FailedToLoadMovieDBException">Throws exception when the query fails</exception>
         public SearchResult SearchMovie(string title)
         {
-            SearchResult result = new SearchResult();
-            string url = BaseUrl + "search/movie?api_key=" + ApiKey + "&query=" + title;
-            using (WebClient wc = new WebClient())
+            SearchResult Result = new SearchResult();
+            string Url = baseUrl + "search/movie?api_key=" + apiKey + "&query=" + title;
+            using (WebClient Wc = new WebClient())
             {
-                JObject search = new JObject();
+                JObject Search = new JObject();
                 try
                 {
-                    var json = wc.DownloadString(url);
-                    search = JObject.Parse(json);
+                    var Json = Wc.DownloadString(Url);
+                    Search = JObject.Parse(Json);
                 }
                 catch
                 {
                     throw new FailedToLoadMovieDBException("Error loading file. Please make sure you are connected to the intenet");
                 }
-                if ((string)search["total_results"] != "0")
+                if ((string)Search["total_results"] != "0")
                 {
-                    JArray jArray = new JArray();
-                    jArray = (JArray)search["results"];
-                    foreach (var token in jArray)
+                    JArray MovieList = new JArray();
+                    MovieList = (JArray)Search["results"];
+                    foreach (var Movie in MovieList)
                     {
-                        result.Titles.Add((string)token["original_title"]);
-                        result.Years.Add((string)token["release_date"]);
-                        result.Id.Add((string)token["id"]);
+                        Result.Titles.Add((string)Movie["original_title"]);
+                        Result.Years.Add((string)Movie["release_date"]);
+                        Result.Id.Add((string)Movie["id"]);
                     }
                 }
                 else
@@ -161,7 +161,7 @@ namespace MovieService
                     throw new TitleNotFoundException("Title not found");
                 }
             }
-        return result;
+        return Result;
         }
 
         /// <summary>
@@ -172,48 +172,48 @@ namespace MovieService
         /// <exception cref="MovieService.TitleNotFoundException">Throws exception when the query fails</exception>
         public MovieInfo GetMovieInfo(string title)
         {
-            SearchResult result = SearchMovie(title);
-            MovieInfo movieInfo = new MovieInfo();
-            if (result.Id.Count < 1)
+            SearchResult Result = SearchMovie(title);
+            MovieInfo MovieInfo = new MovieInfo();
+            if (Result.Id.Count < 1)
             {
                 throw new TitleNotFoundException("Title not found");
             }
-            string url = BaseUrl + "movie/" + result.Id[0] + "?api_key=" + ApiKey;
+            string Url = baseUrl + "movie/" + Result.Id[0] + "?api_key=" + apiKey;
             using (WebClient wc = new WebClient())
             {
-                JObject info = new JObject();
+                JObject Info = new JObject();
                 try
                 {
-                    var json = wc.DownloadString(url);
-                    info = JObject.Parse(json);
+                    var Json = wc.DownloadString(Url);
+                    Info = JObject.Parse(Json);
                 }
                 catch
                 {
                     throw new FailedToLoadMovieDBException("Error loading file. Please make sure you are connected to the intenet");
                 }
-                JArray jArray = new JArray();
-                jArray = (JArray)info["genres"];
-                movieInfo.Genre = " ";
-                foreach (var token in jArray)
+                JArray Genres = new JArray();
+                Genres = (JArray)Info["genres"];
+                MovieInfo.Genre = " ";
+                foreach (var EachGenre in Genres)
                 {
-                    movieInfo.Genre += (string)token["name"];
-                    movieInfo.Genre += ", ";
+                    MovieInfo.Genre += (string)EachGenre["name"];
+                    MovieInfo.Genre += ", ";
                 }
-                movieInfo.Language = (string)info["original_language"];
-                movieInfo.Plot = (string)info["overview"];
-                movieInfo.Released = (string)info["release_date"]; 
-                movieInfo.RunTime = (string)info["runtime"]; 
-                movieInfo.Title = (string)info["original_title"];
-                movieInfo.Year = null;
-                movieInfo.Rated = null;
-                movieInfo.Director = null;
-                movieInfo.Writer = null;
-                movieInfo.Actors = null;
-                movieInfo.Country = null;
-                movieInfo.Awards = null;
-                movieInfo.Rating = null;
+                MovieInfo.Language = (string)Info["original_language"];
+                MovieInfo.Plot = (string)Info["overview"];
+                MovieInfo.Released = (string)Info["release_date"]; 
+                MovieInfo.RunTime = (string)Info["runtime"]; 
+                MovieInfo.Title = (string)Info["original_title"];
+                MovieInfo.Year = null;
+                MovieInfo.Rated = null;
+                MovieInfo.Director = null;
+                MovieInfo.Writer = null;
+                MovieInfo.Actors = null;
+                MovieInfo.Country = null;
+                MovieInfo.Awards = null;
+                MovieInfo.Rating = null;
             }
-            return movieInfo;
+            return MovieInfo;
         }
     }
 }

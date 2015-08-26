@@ -347,20 +347,20 @@
         /// <returns>True if Object are equal or False, otherwise</returns>
         public override bool Equals(object obj)
         {
-            MovieInfo movieInfo = obj as MovieInfo;
-            if(movieInfo == null)
+            MovieInfo Info = obj as MovieInfo;
+            if(Info == null)
             {
                 return false;
             }
             else
             {
-                return title.Equals(movieInfo.Title) && year.Equals(movieInfo.Year) &&
-                        rated.Equals(movieInfo.Rated) && released.Equals(movieInfo.Released) &&
-                        runTime.Equals(movieInfo.RunTime) && genre.Equals(movieInfo.Genre) &&
-                        director.Equals(movieInfo.Director) && writer.Equals(movieInfo.Writer) &&
-                        actors.Equals(movieInfo.Actors) && plot.Equals(movieInfo.Plot) &&
-                        language.Equals(movieInfo.Language) && country.Equals(movieInfo.Country) &&
-                        awards.Equals(movieInfo.Awards) && rating.Equals(movieInfo.Rating);
+                return title.Equals(Info.Title) && year.Equals(Info.Year) &&
+                        rated.Equals(Info.Rated) && released.Equals(Info.Released) &&
+                        runTime.Equals(Info.RunTime) && genre.Equals(Info.Genre) &&
+                        director.Equals(Info.Director) && writer.Equals(Info.Writer) &&
+                        actors.Equals(Info.Actors) && plot.Equals(Info.Plot) &&
+                        language.Equals(Info.Language) && country.Equals(Info.Country) &&
+                        awards.Equals(Info.Awards) && rating.Equals(Info.Rating);
             }
         }
 

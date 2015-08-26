@@ -92,13 +92,13 @@ namespace MovieService
         /// <returns>A string representing A SearchResult Object</returns>
         public override string ToString()
         {
-            string output = null;
-            var movies = Titles.Zip(Years, (title, year) => title + " (" + year + ")");
-            foreach (var movie in movies)
+            string Output = null;
+            var Movies = Titles.Zip(Years, (title, year) => title + " (" + year + ")");
+            foreach (var Movie in Movies)
             {
-                output += movie + "\n";
+                Output += Movie + "\n";
             }
-            return "#### Movie Serach Results #####\n\n" + output + "\n";
+            return "#### Movie Serach Results #####\n\n" + Output + "\n";
         }
     }
 }
