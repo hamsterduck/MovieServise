@@ -5,7 +5,7 @@
     /// </summary>
     /// <seealso cref="MovieService.OmdbService"/>
     ///  /// <seealso cref="MovieService.TmdbService"/>
-    interface IMovieService
+    public interface IMovieService
     {
         /// <summary>
         /// A method that searches for a movie by its title

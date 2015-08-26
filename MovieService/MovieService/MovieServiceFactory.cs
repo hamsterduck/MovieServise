@@ -3,7 +3,7 @@
     /// <summary>
     /// A static class used as a factory for creating Movie Services  
     /// </summary>
-    static class MovieServiceFactory
+    public static class MovieServiceFactory
     {
         public static string OMDB = "OMDB";
         public static string TMDB = "TMDB";
