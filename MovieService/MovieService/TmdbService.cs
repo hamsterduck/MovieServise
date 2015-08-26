@@ -20,8 +20,6 @@ namespace MovieService
         private const string ApiKey = "d22f2c0044f4c4eb0a46c5539bf4fc89";
         private string token;
         private string sessionID;
-        private string userName;
-        private string password;
 
         private TmdbService()
         {
@@ -63,8 +61,6 @@ namespace MovieService
         public string Authenticate(string userName, string password)
         {
             string url = BaseUrl + Authentication + newToken + ApiKey;
-            this.userName = userName;
-            this.password = password;
             using (WebClient wc = new WebClient())
             {
                 string json = null;
