@@ -53,7 +53,7 @@ namespace MovieServiceTest
 
         [TestMethod]
         [ExpectedException(typeof(TitleNotFoundException))]
-        public void OmdbTMovieInfoNotFoundExceptionTest()
+        public void OmdbMovieInfoNotFoundExceptionTest()
         {
             OmdbService service = OmdbService.Service;
             title = "thisIsNotAnameOfAmovie";
@@ -105,11 +105,33 @@ namespace MovieServiceTest
 
         [TestMethod]
         [ExpectedException(typeof(TitleNotFoundException))]
-        public void TmdbTMovieInfoNotFoundExceptionTest()
+        public void TmdbMovieInfoNotFoundExceptionTest()
         {
             TmdbService service = TmdbService.Service;
             title = "thisIsNotAnameOfAmovie";
             service.GetMovieInfo(title);
+        }
+
+        [TestMethod]
+        public void AuthenticateTest()
+        {
+            TmdbService service = TmdbService.Service;
+            string expected = "OK";
+            string userName = "kogrego";
+            string password = "Gk2547963";
+            string actual = service.Authenticate(userName, password);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AuthenticationFailedException))]
+        public void TmdbAuthenticationFailedExceptionTest()
+        {
+            TmdbService service = TmdbService.Service;
+            title = "thisIsNotAnameOfAmovie";
+            string userName = "kogrego";
+            string password = "wrongPassword";
+            service.Authenticate(userName, password);
         }
     }
 }
