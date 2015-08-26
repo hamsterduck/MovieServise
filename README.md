@@ -1,2 +1,2 @@
 # MovieServise
-Get info about movies from public databases
+Get information about movies using our library as a wrapper for the OMDb and TMDb services.
