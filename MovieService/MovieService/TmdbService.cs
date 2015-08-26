@@ -25,10 +25,6 @@ namespace MovieService
 
         private TmdbService()
         {
-            if (Authenticate() == "FAIL")
-            {
-                throw new AuthenticationFailedException("Wrong user name or password");
-            }
         }
 
         /// <summary>The Token property represents the request token we use for TMDb authentication</summary> 
@@ -64,9 +60,11 @@ namespace MovieService
         /// </summary>
         /// <exception cref="MovieService.AuthenticationFailedException">Throws exception when one of the authentication
         /// steps fails</exception> 
-        public string Authenticate()
+        public string Authenticate(string userName, string password)
         {
             string url = BaseUrl + Authentication + newToken + ApiKey;
+            this.userName = userName;
+            this.password = password;
             using (WebClient wc = new WebClient())
             {
                 string json = null;
@@ -81,10 +79,6 @@ namespace MovieService
                 }
                 auth = JObject.Parse(json);
                 token = (string)auth["request_token"];
-                Console.Write("Please enter username: ");
-                userName = Console.ReadLine();
-                Console.Write("Please enter password: ");
-                password = Console.ReadLine();
                 url = BaseUrl + Authentication + "validate_with_login?api_key=" + ApiKey + 
                     "&request_token=" + token + "&username=" + userName + "&password=" + password;
                 try
