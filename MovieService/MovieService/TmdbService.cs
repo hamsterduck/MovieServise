@@ -52,12 +52,14 @@ namespace MovieService
                 return service;
             }
         }
-        
+
         /// <summary>
         /// Compsosites queries necessary for authentication porposes, loads and parses the response
         /// </summary>
         /// <exception cref="MovieService.AuthenticationFailedException">Throws exception when one of the authentication
         /// steps fails</exception> 
+        /// <returns>A string indicating the status of the authentication</returns>
+        /// <exception cref="MovieService.AuthenticationFailedException">Throws exception when the authentication fails</exception>
         public string Authenticate(string userName, string password)
         {
             string url = BaseUrl + Authentication + newToken + ApiKey;

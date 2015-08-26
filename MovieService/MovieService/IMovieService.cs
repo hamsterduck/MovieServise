@@ -20,5 +20,12 @@
         /// <param name="title"></param>
         /// <returns>Movie information (Director, Awards, Actors and more)</returns>
         MovieInfo GetMovieInfo(string title);
+
+        /// <summary>
+        /// Compsosites queries necessary for authentication porposes, loads and parses the response
+        /// </summary>
+        /// <exception cref="MovieService.AuthenticationFailedException">Throws exception when one of the authentication
+        /// steps fails</exception>
+        string Authenticate(string userName, string password);
     }
 }

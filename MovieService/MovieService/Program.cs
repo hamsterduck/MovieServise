@@ -16,6 +16,7 @@ namespace MovieService
 
             // Flow for using TMDb service
             IMovieService movieService2 = MovieServiceFactory.GetMovieService(MovieServiceFactory.TMDB);
+            Console.WriteLine(movieService2.Authenticate("kogrego", "Gk2547963"));
             Console.WriteLine(movieService2.SearchMovie("the matrix"));
             Console.WriteLine(movieService2.GetMovieInfo("the matrix"));
             Console.ReadLine();

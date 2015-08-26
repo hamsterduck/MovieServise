@@ -148,18 +148,14 @@ namespace MovieService
         }
 
         /// <summary>
-        /// Prints the result of the query
+        /// Compsosites queries necessary for authentication porposes, loads and parses the response
         /// </summary>
-        public void PrintResult(object result)
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns>A string indicationg that there is no need for authentication</returns>
+        public string Authenticate(string userName, string password)
         {
-            if (result.GetType() == typeof(SearchResult))
-            {
-                Console.WriteLine("SearchResult");
-            }
-            else if (result.GetType() == typeof(MovieInfo))
-            {
-                Console.WriteLine("MovieInfo");
-            }
+            return "No authentication needed";
         }
     }
 }

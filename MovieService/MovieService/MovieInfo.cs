@@ -363,6 +363,15 @@
                         awards.Equals(movieInfo.Awards) && rating.Equals(movieInfo.Rating);
             }
         }
-        
+
+        /// <summary>
+        /// Overriding GetHashCode to be able to compare between two object. Mainly for testing purposes
+        /// </summary>
+        /// <returns>int base hash code</returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
     }
 }
